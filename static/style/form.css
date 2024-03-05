@@ -116,7 +116,7 @@ form label {
     width: 100px;
 }
 
-#signup {
+.btnn {
     width: 50%;
     border: 1px solid black;
     border-radius: 5px;

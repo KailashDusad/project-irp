@@ -9,10 +9,12 @@
   "author": "Kailash Dusad",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "ejs": "^3.1.9",
     "express": "^4.18.3",
     "mongoose": "^8.2.1",
     "path": "^0.12.7",
+    "pug": "^3.0.2",
     "socket.io": "^4.7.4"
   }
 }

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IRP form</title>
+    <style>
+      
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background-color: #d9d9d9;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 60vw;
+        color: black;
+        margin: auto;
+        padding-top: 10px;
+        background-color: #d9d9d9;
+        background-color: white;
+
+        border-radius: 10px;
+        box-shadow: 0 0 10px 0 rgb(65, 65, 65), 0 0 10px 0 rgb(57, 57, 57),
+          0 0 10px 0 rgb(70, 70, 70), 0 0 10px 0 rgb(61, 61, 61);
+        grid-template-rows: repeat(auto-fit, minmax(300px, 1fr));
+        grid-row-gap: 10px;
+      }
+
+      form input {
+        background: transparent;
+        width: 52%;
+
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 10px;
+        outline: none;
+        display: flex;
+        align-items: center;
+        background-color: #eff4f4;
+      }
+      form textarea {
+        padding-top: 10px;
+        padding-left: 5px;
+        background-color: #eff4f4;
+        border-radius: 5px;
+        width: 53%;
+      }
+      form label {
+        font-weight: bold;
+      }
+      .image img {
+        height: 100px;
+        width: 100px;
+      }
+
+      .btnn {
+        width: 50%;
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 5px;
+        margin-bottom: 15px;
+        margin-top: 10px;
+
+        background: transparent;
+        color: black;
+        font-weight: bold;
+        background-color: #008ffd;
+        cursor: pointer;
+      }
+
+      /* Media Queries */
+      @media only screen and (max-width: 768px) {
+        form {
+          width: 85vw;
+        }
+        form input {
+          width: 89%;
+        }
+        form textarea {
+          border-radius: 5px;
+          width: 89%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <form id="myForm">
+      <label for="email">Enter your email:</label>
+      <input type="email" id="email" name="email" required /><br />
+
+      <label for="message">How can we help You?:</label>
+      <textarea
+        name="message"
+        id="message"
+        cols="60"
+        rows="10"
+        placeholder="Type your message here"
+      ></textarea>
+
+      <button class="btnn" type="submit">Submit</button>
+    </form>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script>
+      const socket = io();
+
+      document.getElementById("myForm").addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const formData = {
+          email: document.getElementById("email").value,
+          message: document.getElementById("message").value,
+        };
+        socket.emit("submitForm", formData);
+        document.getElementById("myForm").reset();
+      });
+
+      socket.on("updateData", (formData) => {
+        console.log("New data received:", formData);
+      });
+    </script>
+  </body>
+</html>
