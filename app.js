@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/static'));
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/static' + '/pug' +'/index.html');
+  res.sendFile(__dirname + '/static' + '/template' +'/index.html');
 });
 
 io.on('connection', (socket) => {
@@ -76,7 +76,7 @@ server.listen(PORT, () => {
 
 // app.use(express.urlencoded({ extended: true }));
 // app.set("view engine", "pug");
-// app.set("views", path.join(__dirname, "static/pug"));
+// app.set("views", path.join(__dirname, "static/template"));
 // app.use("/static", express.static("static"));
 
 // app.get("/", (req, res) => {
